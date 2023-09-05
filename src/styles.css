@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --background-color:#fff;
+    --toggle-color:#343a40;
+}
+html body{
+    background-color: var(--background-color);
+    color: var(--toggle-color);
+}

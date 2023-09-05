@@ -1,0 +1,11 @@
+<nav class="navbar navbar-light bg-dark navbar-fixed" style="position: sticky;top: 0; z-index: 999;">
+    <div class="container-fluid">
+        <a class="navbar-brand"><span style="font-weight: bold;">1F OneFin</span></a>
+        <form class="d-flex">
+            <div class="toggle dropdown-item d-flex align-items-center">
+                <app-toggle></app-toggle>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-danger align-items-center" (click)="signout()" *ngIf="isLoginOut" style="margin-right: 10px;">Signout</button>
+        </form>
+    </div>
+</nav>

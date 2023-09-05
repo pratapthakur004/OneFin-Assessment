@@ -1,0 +1,33 @@
+/*loader.component.css */
+.loading-spinner {
+    background-color: #0000001f;
+    backdrop-filter: blur(10px);
+    position: absolute;
+    width: 100%;
+    /* top: 10%; */
+    left: 0px;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    opacity: 1;
+}
+
+svg {
+    margin: 50px 100px 0px 100px;
+    display: block;
+    shape-rendering: auto;
+}
+
+.loading-message {
+    text-align: center;
+    align-self: start;
+    font-size: large;
+    color: rgba(255, 0, 0, 0.705);
+}
+
+@media (max-width: 768px) {
+    .loading-spinner {
+        top: 65px;
+    }
+}

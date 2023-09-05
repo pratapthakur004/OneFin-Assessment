@@ -1,0 +1,92 @@
+<div class="container" *ngIf="!isRefresh" [ngClass]="!isLoading ? '':'element-hidden'">
+    <div class="search mt-5 input-container">
+        <input type="text" class="form-control search-field" placeholder="Search Here" #input>
+        <i class="bi bi-search"></i>
+    </div>
+    <div class="movies" *ngIf="!isLoading">
+
+        <div class="row">
+            <div class="title mb-4">
+                <h2 class="text-center fw-bold mt-2">Movies</h2>
+            </div>
+
+            <div class="notFound" *ngIf="notFound">
+                <h2>No Movies Found</h2>
+            </div>
+
+            <div class="col-md-4 mb-5 " *ngFor="let movies of moviesData">
+                <a data-toggle="modal" data-target="#myModal" (click)="modalOpen(movies)">
+                    <div class="card card-1">
+                        <div class="image text-center mb-3">
+                            <img src="https://ui-avatars.com/api/?name={{movies.title}}" alt="movies avatar">
+                        </div>
+                        <h3>{{movies.title}}</h3>
+                        <p>Description: {{movies.description | slice: 0:120}}</p>
+                        <p class="genres"> Genres: {{movies.genres? movies.genres : 'Unknown'}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Pagination buttons -->
+        <div class="row" *ngIf="data && !notFound">
+            <div class="col-md-12 text-center">
+                <button class="btn btn-primary mx-2" [disabled]="!data.previous" (click)="loadPage(data.previous)">
+                    <i class="bi bi-skip-backward-fill"></i>
+                </button>
+                <span style="color: black;">{{pageNumber? pageNumber : 1}}</span>
+                <button class="btn btn-primary mx-2" [disabled]="!data.next" (click)="loadPage(data.next)">
+                    <i class="bi bi-skip-forward-fill"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Refresh button -->
+<div class="refreshPage" *ngIf="isRefresh && !isLoading">
+    <div class="w3-display-middle main text-center">
+        <h1 class="w3-jumbo w3-animate-top w3-center">Database Connection Failed</h1>
+        <hr class="w3-border-white w3-animate-left" style="margin:auto;width:50%">
+        <h3 class="w3-center w3-animate-right mt-3">Please click on below refresh button to reload page.</h3>
+        <h3 class="w3-center w3-animate-zoom">🚫🚫Network Error🚫🚫</h3>
+        <div class="refreshbtn">
+            <i class="bi bi-arrow-clockwise larger-icon" (click)="ngOnInit()"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade hideScroll" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="conent-body">
+                <div class="img-holder-div">
+                    <img class="img-responsive" src="https://ui-avatars.com/api/?name={{selectedMovie.title}}"
+                        alt="movies avatar" />
+                </div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{selectedMovie.title | titlecase }}</h5>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <b>Description:</b>&nbsp;
+
+                        <span class="dseclass">{{ selectedMovie.description }}</span>
+                    </p>
+                    <p *ngIf="selectedMovie.genres">
+                        <b>Genres:</b>&nbsp;
+
+                        <span class="dseclass">{{ selectedMovie.genres }}</span>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        (click)="modalClose()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

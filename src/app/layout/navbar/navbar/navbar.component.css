@@ -1,0 +1,16 @@
+.dropdown-item {
+    cursor: pointer;
+    margin-right: 5%;
+}
+
+.toggle {
+    margin-right: 5%;
+}
+
+.navbar {
+    color: white;
+}
+
+.navbar-brand span {
+    color: white;
+}
