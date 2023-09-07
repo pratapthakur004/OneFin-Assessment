@@ -11,5 +11,10 @@ export class AppComponent implements OnInit {
       document.documentElement.style.setProperty("--background-color", localStorage.getItem("backColor") == "white" ? "#fff" : "#343a40")
       document.documentElement.style.setProperty("--toggle-color", localStorage.getItem("backColor") == "white" ? "#343a40" : "#fff")
     }
+    else {
+      localStorage.setItem("backColor", "white")
+      document.documentElement.style.setProperty("--background-color", "#fff")
+      document.documentElement.style.setProperty("--toggle-color", "#343a40")
+    }
   }
 }

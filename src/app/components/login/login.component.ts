@@ -35,7 +35,10 @@ export class LoginComponent {
         this.isButtonDisabled = false;
         if (res.is_success === true) {
           localStorage.setItem("_token", res.data.token);
+
+          this.authSer.isLoginOut.next(true)
           this.toastr.success('WELCOME', 'Login success');
+
           this.router.navigate(['/movies'])
         }
       },
